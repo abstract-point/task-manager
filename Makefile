@@ -1,5 +1,8 @@
 lint:
-	./vendor/bin/phpcs -h
+	composer phpcs
 
 lint-fix:
-	./vendor/bin/phpcbf -h
+	composer phpcbf
+
+test:
+	php artisan test
