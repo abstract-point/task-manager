@@ -1,0 +1,32 @@
+name: main-check
+
+on: [push]
+
+jobs:
+
+    chek-test-lint-codeclimate:
+
+        runs-on: ubuntu-latest
+
+        steps:
+
+            - uses: actions/checkout@v4
+
+            - name: setup app
+              run: make setup
+
+            - name: linter
+              run: make lint
+
+            - name: phpunit-tests
+              run: make test
+
+            - name: Run test & publish code coverage
+              uses: paambaati/codeclimate-action@v5.0.0
+              env:
+                CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+              with:
+                coverageCommand: make test-coverage
+                coverageLocations: ${{ github.workspace }}/build/logs/clover.xml:clover
+                debug: true
+            
