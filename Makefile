@@ -1,8 +1,8 @@
 lint:
-	composer phpcs
+	composer phpcs -- --standard=PSR12 app
 
 lint-fix:
-	composer phpcbf
+	composer phpcbf -- --standard=PSR12 app
 
 test:
 	php artisan test
