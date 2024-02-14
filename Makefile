@@ -1,3 +1,6 @@
+start:
+	php artisan serve --host 0.0.0.0
+	
 lint:
 	composer phpcs -- --standard=PSR12 app
 
@@ -11,7 +14,6 @@ test-coverage:
 	XDEBUG_MODE=coverage php artisan test --coverage-clover build/logs/clover.xml
 
 setup:
-	composer update
 	composer install
 	cp -n .env.example .env
 	php artisan key:gen --ansi

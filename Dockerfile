@@ -1,21 +1,22 @@
-FROM serversideup/php:8.2-fpm-nginx
+FROM serversideup/php:beta-fpm-nginx
 
-# Copy laravel project files
-COPY . /var/www/html
+# Copy the application code to the container
+COPY --chown=www-data:www-data . /var/www/html
 
-COPY ./docker/nginx-site.conf /var/www/html/conf/nginx/nginx-site.conf
+# Copy the nginx configuration to the container
+COPY ./docker/nginx-site.conf /etc/nginx/sites-available/default
 
-# Storage Volume
-VOLUME /var/www/html/storage
+# Install make
+RUN apt-get update && \
+    apt-get install -y make
 
-WORKDIR /var/www/html
-
-# Custom cache invalidation / optional
-#ARG CACHEBUST=1
-
+# Install app
 RUN make setup
 
-# Fix permissions
-RUN chown -R www-data:www-data /var/www/html
+# Run any necessary Laravel initialization scripts
+RUN php artisan config:cache && \
+    php artisan route:cache && \
+    php artisan view:cache
 
-USER www-data
+# Expose port 80 to the host
+EXPOSE 80
