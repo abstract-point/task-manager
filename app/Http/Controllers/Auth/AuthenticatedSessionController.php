@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Mail;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -30,6 +31,16 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         flash('Welcome Aboard!');
+
+        $to_name = 'Receiver';
+        $to_email = 'receiver@example.com';
+        $data = array('name'=>"Ogbonna Vitalis(sender)", "body" => "A test mail");
+
+        Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
+            $message->to($to_email, $to_name)
+                    ->subject('Laravel Test Mail');
+            $message->from('sender@example.com','Test Mail');
+        });
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
