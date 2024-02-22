@@ -32,8 +32,13 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::resources([
-    'task_statuses' => TaskStatusController::class,
-]);
+Route::middleware(['auth'])->group(function () {
+    Route::resource('task_statuses', TaskStatusController::class)
+        ->except(['index']);
+});
+
+// Маршруты, доступные без аутентификации
+Route::resource('task_statuses', TaskStatusController::class)
+    ->only(['index']);
 
 Route::get('/send', [SendController::class, 'send']);
