@@ -4,8 +4,7 @@
                 {{ $message['level'] === 'danger' ? 'border-2 dark:bg-red-100 dark:border-red-400 dark:text-red-700' : '' }}
                 {{ $message['level'] === 'warning' ? 'border-2 dark:bg-yellow-100 dark:border-yellow-400 dark:text-yellow-700' : '' }}
                 py-4 px-4" role="alert">
-      <strong class="font-bold">{{ Str::title($message['level']) }} alert!</strong>
-      <span class="block sm:inline">{{ $message['message'] }}</span>
+      <span class="font-bold block sm:inline">{{ $message['message'] }}</span>
     </div>
 @endforeach
 

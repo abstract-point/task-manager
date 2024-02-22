@@ -37,11 +37,10 @@ class TaskStatusController extends Controller
 
         $status->save();
 
-        flash('Статус успешно сохранен!')->success();
+        flash(__('messages.status.success'))->success();
 
         return redirect()
-            ->route('task_statuses.index')
-            ->with('success', 'Status created successfully');
+            ->route('task_statuses.index');
     }
 
     /**
@@ -65,7 +64,7 @@ class TaskStatusController extends Controller
         $status->fill($data);
         $status->save();
 
-        flash('Статус успешно обновлен!')->success();
+        flash(__('messages.status.update'))->success();
 
         return redirect()->route('task_statuses.index');
     }
