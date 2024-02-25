@@ -39,7 +39,7 @@ class TaskStatusController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(TaskStatusRequest  $request)
+    public function store(TaskStatusRequest $request)
     {
         $data = $request->input();
         $status = new TaskStatus();
