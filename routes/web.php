@@ -34,7 +34,7 @@ require __DIR__.'/auth.php';
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('task_statuses', TaskStatusController::class)
-        ->except(['index']);
+        ->except(['index', 'show']);
 });
 
 // Маршруты, доступные без аутентификации
