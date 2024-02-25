@@ -10,6 +10,9 @@ COPY ./docker/nginx-site.conf /etc/nginx/sites-available/default
 RUN apt-get update && \
     apt-get install -y make
 
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
+RUN apt-get install -y nodejs
+
 # Install app
 RUN make setup
 
