@@ -85,12 +85,14 @@
             <x-responsive-nav-link :href="route('task_statuses.index')" :active="request()->routeIs('task_statuses')">
                 {{ __('Статусы') }}
             </x-responsive-nav-link>
+        @guest
             <x-responsive-nav-link :href="route('login')">
                 {{ __('Log in') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('register')">
                 {{ __('Register') }}
             </x-responsive-nav-link>
+        @endguest
         </div>
 
         <!-- Responsive Settings Options -->
