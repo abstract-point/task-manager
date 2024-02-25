@@ -34,7 +34,12 @@
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-300">{{ $status->created_at }}</td>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-300">
                                         <a href="{{ route('task_statuses.edit', $status) }}" class="text-blue-400 dark:text-blue-400">Изменить</a>
-                                        <a href="{{ route('task_statuses.destroy', $status) }}" class="text-red-400 dark:text-red-400">Удалить</a>
+{{--                                        <a href="{{ route('task_statuses.destroy', $status) }}" data-confirm="Вы уверены?" data-method="delete" class="text-red-400 dark:text-red-400">Удалить</a>--}}
+                                        <form action="{{ route('task_statuses.destroy', $status) }}" method="POST" class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-500 dark:text-red-400" onclick="return confirm('Вы уверены?')">Удалить</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @empty
