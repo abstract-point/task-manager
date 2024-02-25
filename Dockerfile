@@ -15,6 +15,7 @@ RUN apt-get install -y nodejs
 
 # Install app
 RUN make setup
+RUN rm -f ./public/hot
 
 # Run any necessary Laravel initialization scripts
 RUN php artisan config:cache && \
