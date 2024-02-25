@@ -27,6 +27,16 @@ class TaskStatusController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        $status = TaskStatus::findOrFail($id);
+
+        return view('status.edit', compact('status'));
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(TaskStatusRequest  $request)
@@ -41,16 +51,6 @@ class TaskStatusController extends Controller
 
         return redirect()
             ->route('task_statuses.index');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $status = TaskStatus::findOrFail($id);
-
-        return view('status.edit', compact('status'));
     }
 
     /**
@@ -74,6 +74,12 @@ class TaskStatusController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $taskStatus = TaskStatus::findOrFail($id);
+
+        $taskStatus->delete();
+
+        flash(__('messages.status.delete'))->success();
+
+        return redirect()->route('task_statuses.index');
     }
 }
