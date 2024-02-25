@@ -22,7 +22,9 @@
                                 <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-300">ID</th>
                                 <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-300">Имя</th>
                                 <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-300">Дата создания</th>
+                                @auth
                                 <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-300">Действия</th>
+                                @endauth
                             </tr>
                             </thead>
 
@@ -32,6 +34,7 @@
                                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-300">{{ $status->id }}</td>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-300">{{ $status->name }}</td>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-300">{{ $status->created_at }}</td>
+                                    @auth
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-300">
                                         <a href="{{ route('task_statuses.edit', $status) }}" class="text-blue-400 dark:text-blue-400">Изменить</a>
 {{--                                        <a href="{{ route('task_statuses.destroy', $status) }}" data-confirm="Вы уверены?" data-method="delete" class="text-red-400 dark:text-red-400">Удалить</a>--}}
@@ -41,6 +44,7 @@
                                             <button type="submit" class="text-red-500 dark:text-red-400" onclick="return confirm('Вы уверены?')">Удалить</button>
                                         </form>
                                     </td>
+                                    @endauth
                                 </tr>
                             @empty
                                 <tr>
