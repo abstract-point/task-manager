@@ -19,7 +19,7 @@ class TaskStatusFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->word,
+            'name' => Str::random(5),
         ];
     }
 }
