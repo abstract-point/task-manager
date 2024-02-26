@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SendController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TaskStatusController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,10 +36,14 @@ require __DIR__.'/auth.php';
 Route::middleware(['auth'])->group(function () {
     Route::resource('task_statuses', TaskStatusController::class)
         ->except(['index', 'show']);
+    Route::resource('tasks', TaskController::class)
+        ->except(['index', 'show']);
 });
 
 // Маршруты, доступные без аутентификации
 Route::resource('task_statuses', TaskStatusController::class)
+    ->only(['index']);
+Route::resource('tasks', TaskController::class)
     ->only(['index']);
 
 Route::get('/send', [SendController::class, 'send']);
