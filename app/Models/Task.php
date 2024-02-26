@@ -24,4 +24,9 @@ class Task extends Model
     {
         return $this->belongsTo(User::class, 'assigned_to_id');
     }
+
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(TaskStatus::class);
+    }
 }
