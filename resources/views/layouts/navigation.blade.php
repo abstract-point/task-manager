@@ -16,7 +16,10 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('task_statuses.index')" :active="request()->routeIs('task_statuses')">
-                        {{ __('Статусы') }}
+                        {{ __('interface.task_statuses.index.title') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks')">
+                        {{ __('interface.tasks.index.title') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -83,7 +86,10 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('task_statuses.index')" :active="request()->routeIs('task_statuses')">
-                {{ __('Статусы') }}
+                {{ __('interface.task_statuses.index.title') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks')">
+                {{ __('interface.tasks.index.title') }}
             </x-responsive-nav-link>
         @guest
             <x-responsive-nav-link :href="route('login')">
