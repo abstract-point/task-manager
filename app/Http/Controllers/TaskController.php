@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
 use App\Models\TaskStatus;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -36,7 +37,13 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        //
+        $data = $request->validated();
+        $task = Task::factory()->make($data);
+        $task->save();
+
+        flash(__('messages.task.store'))->success();
+
+        return redirect()->route('tasks.index');
     }
 
     /**
@@ -44,7 +51,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        return view('task.show', compact('task'));
     }
 
     /**
@@ -63,7 +70,13 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        //
+        $data = $request->validated();
+        $task->fill($data);
+        $task->save();
+
+        flash(__('messages.task.update'))->success();
+
+        return redirect()->route('tasks.index');
     }
 
     /**
@@ -71,6 +84,15 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        if (Auth::user()->id !== $task->creator->id) {
+            flash(__('messages.task.delete_forbidden'))->error();
+
+            return redirect()->route('tasks.index');
+        }
+
+        $task->delete();
+        flash(__('messages.task.delete'))->info();
+
+        return redirect()->route('tasks.index');
     }
 }
