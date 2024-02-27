@@ -35,23 +35,27 @@
                                 <tr>
                                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-300">{{ $task->id }}</td>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-300">{{ $task->status->name }}</td>
-                                    <td class="whitespace-normal break-words px-4 py-2 text-gray-700 dark:text-gray-300">{{ $task->name }}</td>
+                                    <td class="whitespace-normal break-words px-4 py-2 text-gray-700 dark:text-gray-300">
+                                        <a href="{{ route('tasks.show', $task) }}" class="text-blue-400 dark:text-blue-400">{{ $task->name }}</a>
+                                    </td>
                                     <td class="whitespace-normal break-words px-4 py-2 text-gray-700 dark:text-gray-300">{{ $task->creator->name }}</td>
-                                    <td class="whitespace-normal break-words px-4 py-2 text-gray-700 dark:text-gray-300">{{ $task->assignee->name }}</td>
+                                    <td class="whitespace-normal break-words px-4 py-2 text-gray-700 dark:text-gray-300">{{ $task->assignee->name ?? ''}}</td>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-300">{{ $task->created_at }}</td>
                                     @auth
                                         <td class="whitespace-normal break-words px-4 py-2 text-gray-700 dark:text-gray-300">
                                             <a href="{{ route('tasks.edit', $task) }}"
                                                class="text-blue-400 dark:text-blue-400">Изменить</a>
                                             {{-- <a href="{{ route('tasks.destroy', $status) }}" data-confirm="Вы уверены?" data-method="delete" class="text-red-400 dark:text-red-400">Удалить</a>--}}
-                                            <form action="{{ route('tasks.destroy', $task) }}" method="POST"
-                                                  class="inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="text-red-500 dark:text-red-400"
-                                                        onclick="return confirm('Вы уверены?')">Удалить
-                                                </button>
-                                            </form>
+                                            @if(Auth::user()->id === $task->creator->id)
+                                                <form action="{{ route('tasks.destroy', $task) }}" method="POST"
+                                                      class="inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="text-red-500 dark:text-red-400"
+                                                            onclick="return confirm('Вы уверены?')">Удалить
+                                                    </button>
+                                                </form>
+                                            @endif
                                         </td>
                                     @endauth
                                 </tr>
