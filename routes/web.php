@@ -44,6 +44,6 @@ Route::middleware(['auth'])->group(function () {
 Route::resource('task_statuses', TaskStatusController::class)
     ->only(['index']);
 Route::resource('tasks', TaskController::class)
-    ->only(['index']);
+    ->only(['index', 'show']);
 
 Route::get('/send', [SendController::class, 'send']);
