@@ -58,7 +58,7 @@ class TaskTest extends TestCase
     public function testStoreAuthed(): void
     {
         $user = User::factory()->create();
-        $task = Task::factory()->make();
+        $task = Task::factory()->make()->only('name', 'description', 'status_id', 'created_by_id', 'assigned_to_id');
 
         $this->actingAs($user)
             ->post(route('tasks.store'), $task)
@@ -100,8 +100,10 @@ class TaskTest extends TestCase
     public function testDestroyAuthedCreator(): void
     {
         $user = User::factory()->create();
-        $task = TaskStatus::factory()->create();
+
+        $task = Task::factory()->make();
         $task->creator()->associate($user);
+        $task->save();
 
         $this->actingAs($user)
             ->delete(route('tasks.destroy', [$task]))
@@ -121,10 +123,12 @@ class TaskTest extends TestCase
     public function testDestroyNotCreator(): void
     {
         $user = User::factory()->create();
-        $task = TaskStatus::factory()->create();
+        $task = Task::factory()->create();
 
         $this->actingAs($user)
             ->delete(route('tasks.destroy', [$task]))
-            ->assertRedirectToRoute('tasks.access_denied');
+            ->assertRedirectToRoute('tasks.index');
+
+        $this->assertDatabaseHas('tasks', $task->only('id'));
     }
 }
