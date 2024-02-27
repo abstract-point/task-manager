@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class TaskStatusController extends Controller
 {
+    //TODO: привязать модель к ресурсу
     /**
      * Display a listing of the resource.
      */
@@ -41,13 +42,14 @@ class TaskStatusController extends Controller
      */
     public function store(TaskStatusRequest $request)
     {
+        //TODO: использовать валидацию через Request
         $data = $request->input();
         $status = new TaskStatus();
         $status->fill($data);
 
         $status->save();
 
-        flash(__('messages.status.success'))->success();
+        flash(__('messages.status.store'))->success();
 
         return redirect()
             ->route('task_statuses.index');
@@ -75,10 +77,17 @@ class TaskStatusController extends Controller
     public function destroy(string $id)
     {
         $taskStatus = TaskStatus::findOrFail($id);
+        $tasks = $taskStatus->tasks;
+
+        if (!$tasks->isEmpty()) {
+            flash(__('messages.status.delete_forbidden'))->error();
+
+            return redirect()->route('task_statuses.index');
+        }
 
         $taskStatus->delete();
 
-        flash(__('messages.status.delete'))->success();
+        flash(__('messages.status.delete'))->info();
 
         return redirect()->route('task_statuses.index');
     }
