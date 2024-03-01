@@ -17,7 +17,8 @@ class TaskStatusRequest extends FormRequest
     {
         return [
             'name' => [
-                'required', 'string', 'max:30', 'min:3', Rule::unique('task_statuses', 'name')->ignore($this->task_status)
+                'required', 'string', 'max:30', 'min:3',
+                Rule::unique('task_statuses', 'name')->ignore($this->task_status)
             ],
         ];
     }
