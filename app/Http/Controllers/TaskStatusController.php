@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class TaskStatusController extends Controller
 {
-    //TODO: привязать модель к ресурсу
     /**
      * Display a listing of the resource.
      */
@@ -40,8 +39,7 @@ class TaskStatusController extends Controller
      */
     public function store(TaskStatusRequest $request)
     {
-        //TODO: использовать валидацию через Request
-        $data = $request->input();
+        $data = $request->validated();
         $status = new TaskStatus();
         $status->fill($data);
 
