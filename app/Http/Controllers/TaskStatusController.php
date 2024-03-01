@@ -30,10 +30,8 @@ class TaskStatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(TaskStatus $status)
     {
-        $status = TaskStatus::findOrFail($id);
-
         return view('status.edit', compact('status'));
     }
 
@@ -58,10 +56,9 @@ class TaskStatusController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(TaskStatusRequest $request, string $id)
+    public function update(TaskStatusRequest $request, TaskStatus $status)
     {
         $data = $request->validated();
-        $status = TaskStatus::findOrFail($id);
 
         $status->fill($data);
         $status->save();
@@ -74,10 +71,9 @@ class TaskStatusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(TaskStatus $status)
     {
-        $taskStatus = TaskStatus::findOrFail($id);
-        $tasks = $taskStatus->tasks;
+        $tasks = $status->tasks;
 
         if (!$tasks->isEmpty()) {
             flash(__('messages.status.delete_forbidden'))->error();
@@ -85,7 +81,7 @@ class TaskStatusController extends Controller
             return redirect()->route('task_statuses.index');
         }
 
-        $taskStatus->delete();
+        $status->delete();
 
         flash(__('messages.status.delete'))->info();
 
