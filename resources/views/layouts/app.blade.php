@@ -31,7 +31,9 @@
             <!-- Page Content -->
             <main>
                 @include('flash::message')
-                {{ $slot }}
+                <div class="py-4">
+                    {{ $slot }}
+                </div>
             </main>
         </div>
     </body>
