@@ -21,11 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -42,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('tasks', TaskController::class)
         ->except(['index', 'show']);
     Route::resource('labels', LabelController::class)
-        ->except(['index']);
+        ->except(['index', 'show']);
 });
 
 // Маршруты, доступные без аутентификации
