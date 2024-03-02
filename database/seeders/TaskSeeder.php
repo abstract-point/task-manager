@@ -29,7 +29,7 @@ class TaskSeeder extends Seeder
             $task->creator()->associate($users->random(1)->value('id'));
             $task->assignee()->associate($users->random(1)->value('id'));
 
-            $task->labels()->attach($labels->random(rand(1, 4))->value('id'));
+            $task->labels()->attach($labels->random(rand(1, 4)));
             $task->status()->associate($statuses->random(1)->value('id'));
 
             $task->save();
