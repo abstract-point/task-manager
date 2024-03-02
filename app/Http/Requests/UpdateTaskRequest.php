@@ -22,6 +22,7 @@ class UpdateTaskRequest extends FormRequest
             'status_id' => ['required', 'integer'],
             'created_by_id' => ['required', 'integer'],
             'assigned_to_id' => 'nullable|integer',
+            'labels' => 'array',
         ];
     }
 }
