@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Models\Label;
 use App\Models\Task;
 use App\Models\TaskStatus;
 use App\Models\User;
@@ -27,9 +28,10 @@ class TaskController extends Controller
     public function create()
     {
         $taskStatuses = TaskStatus::all();
+        $labels = Label::all();
         $users = User::all();
 
-        return view('task.create', compact('taskStatuses', 'users'));
+        return view('task.create', compact('taskStatuses', 'users', 'labels'));
     }
 
     /**
@@ -38,8 +40,8 @@ class TaskController extends Controller
     public function store(StoreTaskRequest $request)
     {
         $data = $request->validated();
-        $task = Task::factory()->make($data);
-        $task->save();
+        $task = Task::factory()->create(collect($data)->except(['labels'])->toArray());
+        $task->labels()->attach($data['labels']);
 
         flash(__('messages.task.store'))->success();
 
@@ -60,9 +62,10 @@ class TaskController extends Controller
     public function edit(Task $task)
     {
         $taskStatuses = TaskStatus::all();
+        $labels = Label::all();
         $users = User::all();
 
-        return view('task.edit', compact('task', 'taskStatuses', 'users'));
+        return view('task.edit', compact('task', 'taskStatuses', 'users', 'labels'));
     }
 
     /**
@@ -71,7 +74,15 @@ class TaskController extends Controller
     public function update(UpdateTaskRequest $request, Task $task)
     {
         $data = $request->validated();
-        $task->fill($data);
+        $taskData = collect($data)->except(['labels'])->toArray();
+        $labelsData = $data['labels'] ?? [];
+
+        if (in_array(null, $labelsData)) {
+            unset($labelsData[0]);
+        }
+
+        $task->fill($taskData);
+        $task->labels()->sync($labelsData);
         $task->save();
 
         flash(__('messages.task.update'))->success();
