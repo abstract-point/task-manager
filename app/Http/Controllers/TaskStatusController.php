@@ -71,10 +71,8 @@ class TaskStatusController extends Controller
      */
     public function destroy(TaskStatus $status)
     {
-        $tasks = $status->tasks;
-
-        if (!$tasks->isEmpty()) {
-            flash(__('messages.status.delete_forbidden'))->error();
+        if (!$status->tasks->isEmpty()) {
+            flash(__('messages.status.delete_forbidden'))->warning();
 
             return redirect()->route('task_statuses.index');
         }
