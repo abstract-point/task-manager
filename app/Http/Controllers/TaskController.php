@@ -40,8 +40,15 @@ class TaskController extends Controller
     public function store(StoreTaskRequest $request)
     {
         $data = $request->validated();
-        $task = Task::factory()->create(collect($data)->except(['labels'])->toArray());
-        $task->labels()->attach($data['labels']);
+        $taskData = collect($data)->except(['labels'])->toArray();
+        $labelsData = $data['labels'] ?? [];
+
+        if (in_array(null, $labelsData)) {
+            unset($labelsData[0]);
+        }
+
+        $task = Task::factory()->create($taskData);
+        $task->labels()->attach($labelsData);
 
         flash(__('messages.task.store'))->success();
 
@@ -101,6 +108,7 @@ class TaskController extends Controller
             return redirect()->route('tasks.index');
         }
 
+        $task->labels()->detach();
         $task->delete();
         flash(__('messages.task.delete'))->info();
 
