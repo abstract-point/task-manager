@@ -2,6 +2,7 @@
 
 
 use App\Models\Label;
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -112,5 +113,19 @@ class LabelTest extends TestCase
 
         $this->delete(route('labels.destroy', [$label]))
             ->assertRedirectToRoute('login');
+    }
+
+    public function testDestroyLabelWithTask(): void
+    {
+        $user = User::factory()->create();
+        $task = Task::factory()->create();
+        $label = Label::factory()->create();
+        $task->labels()->attach($label);
+
+        $this->actingAs($user)
+            ->delete(route('labels.destroy', [$label]))
+            ->assertRedirectToRoute('labels.index');
+
+        $this->assertDatabaseHas('labels', $label->only('id'));
     }
 }
