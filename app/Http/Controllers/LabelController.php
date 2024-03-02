@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreLabelRequest;
 use App\Http\Requests\UpdateLabelRequest;
 use App\Models\Label;
+use function PHPUnit\Framework\isEmpty;
 
 class LabelController extends Controller
 {
@@ -13,7 +14,9 @@ class LabelController extends Controller
      */
     public function index()
     {
-        //
+        $labels = Label::all();
+
+        return view('label.index', compact('labels'));
     }
 
     /**
@@ -21,7 +24,7 @@ class LabelController extends Controller
      */
     public function create()
     {
-        //
+        return view('label.create');
     }
 
     /**
@@ -29,15 +32,13 @@ class LabelController extends Controller
      */
     public function store(StoreLabelRequest $request)
     {
-        //
-    }
+        $data = $request->validated();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Label $label)
-    {
-        //
+        Label::factory()->create($data);
+
+        flash(__('messages.label.store'))->success();
+
+        return redirect()->route('labels.index');
     }
 
     /**
@@ -45,7 +46,7 @@ class LabelController extends Controller
      */
     public function edit(Label $label)
     {
-        //
+        return view('label.edit', compact('label'));
     }
 
     /**
@@ -53,7 +54,13 @@ class LabelController extends Controller
      */
     public function update(UpdateLabelRequest $request, Label $label)
     {
-        //
+        $data = $request->validated();
+        $label->fill($data);
+        $label->save();
+
+        flash(__('messages.label.update'))->success();
+
+        return redirect()->route('labels.index');
     }
 
     /**
@@ -61,6 +68,16 @@ class LabelController extends Controller
      */
     public function destroy(Label $label)
     {
-        //
+        if (!$label->tasks->isEmpty()) {
+            flash(__('messages.label.delete_forbidden'))->warning();
+
+            return redirect()->route('labels.index');
+        }
+
+        $label->delete();
+
+        flash(__('messages.label.delete'))->info();
+
+        return redirect()->route('labels.index');
     }
 }
