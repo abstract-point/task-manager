@@ -6,11 +6,17 @@
     </x-slot>
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="my-4">
-            <x-link-button href="{{ route('tasks.create') }}">
-                {{ __('interface.tasks.index.button') }}
-            </x-link-button>
+        <div class="flex flex-row justify-between my-4">
+            <div class="">
+                @include('task.filter')
+            </div>
+            <div class="flex">
+                <x-link-button href="{{ route('tasks.create') }}">
+                    {{ __('interface.tasks.index.button') }}
+                </x-link-button>
+            </div>
         </div>
+
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900 dark:text-gray-100">
                 <div class="overflow-x-auto">
