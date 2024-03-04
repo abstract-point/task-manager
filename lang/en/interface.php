@@ -97,6 +97,9 @@ return [
             'status' => 'Status',
             'labels' => 'Labels',
         ],
+        'filter' => [
+            'button' => 'Apply',
+        ],
     ],
     'labels' => [
         'index' => [

@@ -98,6 +98,9 @@ return [
             'status' => 'Статус',
             'labels' => 'Метки',
         ],
+        'filter' => [
+            'button' => 'Применить',
+        ],
     ],
     'labels' => [
         'index' => [
