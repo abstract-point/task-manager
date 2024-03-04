@@ -5,7 +5,7 @@
 </div>
 <div>
     <x-input-label for="description" :value="__('interface.labels.form.description')" class="mt-4" />
-    <x-textarea id="description" class="block mt-1 w-1/3" name="description" autofocus >
+    <x-textarea id="description" class="block mt-1 w-1/3" name="description">
         {{ old('description', $label->description ?? null) }}
     </x-textarea>
     <x-input-error :messages="$errors->get('description')" class="mt-2" />
