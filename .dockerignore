@@ -4,3 +4,9 @@
 # Игнорировать директорию .git и файлы markdown
 .git
 *.md
+
+./.env
+./.env.example
+
+node_modules/
+vendor/
