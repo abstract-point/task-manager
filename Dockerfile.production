@@ -1,12 +1,11 @@
 FROM serversideup/php:beta-fpm-nginx
 
-# Copy the application code to the container
-COPY --chown=www-data:www-data . /var/www/html
+WORKDIR /var/www/html/
 
-# Copy the nginx configuration to the container
+COPY . .
 COPY ./docker/nginx-site.conf /etc/nginx/sites-available/default
+COPY ./docker/.env.production ./.env
 
-# Install make
 RUN apt-get update && \
     apt-get install -y make
 
@@ -14,7 +13,9 @@ RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
 RUN apt-get install -y nodejs
 
 RUN composer install
-RUN	cp -n ./docker/.env.production .env
+
+RUN php artisan config:cache
+
 RUN	php artisan key:gen --ansi
 RUN	php artisan migrate --force
 RUN	php artisan db:seed --force
@@ -24,3 +25,5 @@ RUN	npm run build
 RUN php artisan config:cache && \
     php artisan route:cache && \
     php artisan view:cache
+
+RUN chown -R www-data:www-data /var/www/html/
