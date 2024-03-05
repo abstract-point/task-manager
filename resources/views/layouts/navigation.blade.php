@@ -12,13 +12,13 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks')">
+                    <x-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.*')">
                         {{ __('interface.navigation.tasks') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('task_statuses.index')" :active="request()->routeIs('task_statuses')">
+                    <x-nav-link :href="route('task_statuses.index')" :active="request()->routeIs('task_statuses.*')">
                         {{ __('interface.navigation.statuses') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('labels.index')" :active="request()->routeIs('labels')">
+                    <x-nav-link :href="route('labels.index')" :active="request()->routeIs('labels.*')">
                         {{ __('interface.navigation.labels') }}
                     </x-nav-link>
                 </div>
