@@ -17,7 +17,7 @@ class TaskSeeder extends Seeder
     public function run(): void
     {
         $users = User::factory(10)->create();
-        $statuses = TaskStatus::factory(5)->create();
+        $statuses = TaskStatus::all();
         $labels = Label::factory(4)->create();
         $tasks = Task::factory(30)->create([
             'status_id' => 1,
