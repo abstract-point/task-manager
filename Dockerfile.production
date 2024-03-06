@@ -5,6 +5,9 @@ WORKDIR /var/www/html/
 COPY . .
 COPY ./docker/nginx-site.conf /etc/nginx/sites-available/default
 
+ENV WEBROOT /var/www/html/public
+ENV APP_ENV production
+ENV APP_DEBUG false
 
 RUN apt-get update && \
     apt-get install -y make
