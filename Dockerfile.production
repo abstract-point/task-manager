@@ -4,7 +4,7 @@ WORKDIR /var/www/html/
 
 COPY . .
 COPY ./docker/nginx-site.conf /etc/nginx/sites-available/default
-COPY ./docker/.env.production ./.env
+
 
 RUN apt-get update && \
     apt-get install -y make
@@ -19,6 +19,7 @@ RUN php artisan config:cache
 RUN	php artisan key:gen --ansi
 RUN	php artisan migrate --force
 RUN	php artisan db:seed --force
+COPY ./docker/.env.production ./.env
 RUN	npm ci
 RUN	npm run build
 
