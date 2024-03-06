@@ -21,34 +21,34 @@ return [
         'button' => 'Login',
     ],
     'register' => [
-        'title' => 'Register in Todos',
+        'title' => 'Register to Todos',
         'name' => 'Name',
         'email' => 'Email',
         'password' => 'Password',
-        'confirm_password' => 'Confirmation',
+        'confirm_password' => 'Confirm password',
         'already_registered' => 'Already registered?',
         'button' => 'Register',
     ],
     'profile' => [
         'title' => 'Profile',
-        'info' => 'Profile information',
-        'info_update' => 'Update your Name or email',
+        'info' => 'Profile Information',
+        'info_update' => 'Update your Name or Email',
         'name' => 'Name',
         'email' => 'Email',
         'email_unverified' => 'Your email is not verified.',
-        'email_resend' => 'Click here to resend the verification email.',
-        'email_resented' => 'A verification email has been sent to your email.',
+        'email_resend' => 'Click here to resend confirmation email.',
+        'email_resented' => 'Confirmation email resent to your email.',
         'password' => 'Password',
-        'password_info' => 'To ensure security, use a long random password for your account.',
-        'password_update' => 'Update password',
+        'password_info' => 'For security, use a long random password in your account.',
+        'password_update' => 'Update Password',
         'password_current' => 'Current password',
         'password_new' => 'New password',
         'password_confirm' => 'Confirm password',
         'button_save' => 'Save',
         'saved' => 'Saved',
-        'delete' => 'Delete account',
-        'delete_info' => 'Upon deleting your account, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information you wish to retain.',
-        'button_delete' => 'Delete account',
+        'delete' => 'Delete Account',
+        'delete_info' => 'Once your account is deleted, all its resources and data will be permanently deleted. Before deleting, download any data and information you wish to keep.',
+        'button_delete' => 'Delete Account',
     ],
     'task_statuses' => [
         'index' => [
@@ -56,9 +56,16 @@ return [
             'table' => [
                 'id' => 'ID',
                 'name' => 'Name',
-                'actions' => 'Actions'
+                'created_at' => 'Created At',
+                'actions' => [
+                    'title' => 'Actions',
+                    'edit' => 'Edit',
+                    'delete' => 'Delete',
+                    'alert' => 'Are you sure?',
+                    'no_data' => 'No data'
+                ]
             ],
-            'button' => 'New status',
+            'button' => 'New Status',
         ]
     ],
     'tasks' => [
@@ -70,17 +77,23 @@ return [
                 'name' => 'Name',
                 'author' => 'Author',
                 'performer' => 'Performer',
-                'created_at' => 'Creation date',
-                'actions' => 'Actions'
+                'created_at' => 'Created At',
+                'actions' => [
+                    'title' => 'Actions',
+                    'edit' => 'Edit',
+                    'delete' => 'Delete',
+                    'alert' => 'Are you sure?',
+                    'no_data' => 'No data'
+                ]
             ],
-            'button' => 'New task',
+            'button' => 'New Task',
         ],
         'create' => [
-            'title' => 'Create task',
+            'title' => 'Create Task',
             'button' => 'Create',
         ],
         'edit' => [
-            'title' => 'Edit task',
+            'title' => 'Edit Task',
             'button' => 'Update',
         ],
         'form' => [
@@ -91,7 +104,7 @@ return [
             'labels' => 'Labels',
         ],
         'show' => [
-            'title' => 'View task',
+            'title' => 'View Task',
             'name' => 'Name',
             'description' => 'Description',
             'status' => 'Status',
@@ -108,17 +121,23 @@ return [
                 'id' => 'ID',
                 'name' => 'Name',
                 'description' => 'Description',
-                'created_at' => 'Creation date',
-                'actions' => 'Actions'
+                'created_at' => 'Created At',
+                'actions' => [
+                    'title' => 'Actions',
+                    'edit' => 'Edit',
+                    'delete' => 'Delete',
+                    'alert' => 'Are you sure?',
+                    'no_data' => 'No data'
+                ]
             ],
-            'button' => 'Create label',
+            'button' => 'Create Label',
         ],
         'create' => [
-            'title' => 'Create label',
+            'title' => 'Create Label',
             'button' => 'Create',
         ],
         'edit' => [
-            'title' => 'Edit label',
+            'title' => 'Edit Label',
             'button' => 'Update',
         ],
         'form' => [
@@ -127,5 +146,4 @@ return [
         ],
     ]
 ];
-
 
