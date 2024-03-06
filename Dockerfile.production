@@ -14,12 +14,11 @@ RUN apt-get install -y nodejs
 
 RUN composer install
 
-RUN php artisan config:cache
-
-RUN	php artisan key:gen --ansi
 RUN	php artisan migrate --force
 RUN	php artisan db:seed --force
+
 COPY ./docker/.env.production ./.env
+
 RUN	npm ci
 RUN	npm run build
 
