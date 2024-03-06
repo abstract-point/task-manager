@@ -46,6 +46,8 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+        flash(__('messages.login'))->success();
+
         return redirect(RouteServiceProvider::HOME);
     }
 }
