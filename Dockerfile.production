@@ -1,31 +1,21 @@
 FROM serversideup/php:beta-fpm-nginx
 
+ENV WEBROOT /var/www/html/public
+ENV APP_ENV production
+ENV APP_DEBUG false
+
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
+RUN apt-get install -y nodejs
+
 WORKDIR /var/www/html/
 
 COPY . .
 COPY ./docker/nginx-site.conf /etc/nginx/sites-available/default
 
-ENV WEBROOT /var/www/html/public
-ENV APP_ENV production
-ENV APP_DEBUG false
-
-RUN apt-get update && \
-    apt-get install -y make
-
-RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
-RUN apt-get install -y nodejs
-
 RUN composer install
-
-RUN	php artisan migrate --force
-RUN	php artisan db:seed --force
-
-
 RUN	npm ci
 RUN	npm run build
 
-RUN php artisan config:cache && \
-    php artisan route:cache && \
-    php artisan view:cache
-
 RUN chown -R www-data:www-data /var/www/html/
+
+CMD ["bash", "-c", "php artisan migrate --force && artisan db:seed --force"]
