@@ -17,7 +17,6 @@ RUN composer install
 RUN	php artisan migrate --force
 RUN	php artisan db:seed --force
 
-COPY ./docker/.env.production ./.env
 
 RUN	npm ci
 RUN	npm run build
