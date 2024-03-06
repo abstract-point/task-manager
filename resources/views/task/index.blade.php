@@ -30,7 +30,7 @@
                             <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-300">{{ __('interface.tasks.index.table.performer') }}</th>
                             <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-300">{{ __('interface.tasks.index.table.created_at') }}</th>
                             @auth
-                                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-300">{{ __('interface.tasks.index.table.actions') }}</th>
+                                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-300">{{ __('interface.tasks.index.table.actions.title') }}</th>
                             @endauth
                         </tr>
                         </thead>
@@ -49,7 +49,9 @@
                                 @auth
                                     <td class="whitespace-normal break-words px-4 py-2 text-gray-700 dark:text-gray-300">
                                         <a href="{{ route('tasks.edit', $task) }}"
-                                           class="text-blue-400 dark:text-blue-400">Изменить</a>
+                                           class="text-blue-400 dark:text-blue-400">
+                                            {{ __('interface.tasks.index.table.actions.edit') }}
+                                        </a>
                                         {{-- <a href="{{ route('tasks.destroy', $status) }}" data-confirm="Вы уверены?" data-method="delete" class="text-red-400 dark:text-red-400">Удалить</a>--}}
                                         @if(Auth::user()->id === $task->creator->id)
                                             <form action="{{ route('tasks.destroy', $task) }}" method="POST"
@@ -57,7 +59,8 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="text-red-500 dark:text-red-400"
-                                                        onclick="return confirm('Вы уверены?')">Удалить
+                                                        onclick="return confirm({{ __('interface.tasks.index.table.actions.alert') }})">
+                                                    {{ __('interface.tasks.index.table.actions.delete') }}
                                                 </button>
                                             </form>
                                         @endif
@@ -66,10 +69,12 @@
                             </tr>
                         @empty
                             <tr>
-                                <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">No data</td>
-                                <td class="whitespace-nowrap px-4 py-2 text-gray-700">No data</td>
-                                <td class="whitespace-nowrap px-4 py-2 text-gray-700">No data</td>
-                                <td class="whitespace-nowrap px-4 py-2 text-gray-700">No data</td>
+                                <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{ __('interface.tasks.index.table.actions.no_data') }}</td>
+                                <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ __('interface.tasks.index.table.actions.no_data') }}</td>
+                                <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ __('interface.tasks.index.table.actions.no_data') }}</td>
+                                <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ __('interface.tasks.index.table.actions.no_data') }}</td>
+                                <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ __('interface.tasks.index.table.actions.no_data') }}</td>
+                                <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ __('interface.tasks.index.table.actions.no_data') }}</td>
                             </tr>
                         @endforelse
                         </tbody>
