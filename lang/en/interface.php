@@ -2,7 +2,10 @@
 
 return [
     'title' => 'Todos',
-    'welcome' => 'Welcome to Todos!',
+    'welcome' => [
+        'title' => 'Welcome!',
+        'text' => 'This is simple task manager by Laravel'
+    ],
     'navigation' => [
         'statuses' => 'Statuses',
         'tasks' => 'Tasks',

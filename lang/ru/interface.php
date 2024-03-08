@@ -2,7 +2,10 @@
 
 return [
     'title' => 'Todos',
-    'welcome' => 'Добро пожаловать в Todos!',
+    'welcome' => [
+        'title' => 'Привет от Хекслета!',
+        'text' => 'Это простой менеджер задач на Laravel'
+    ],
     'navigation' => [
         'statuses' => 'Статусы',
         'tasks' => 'Задачи',

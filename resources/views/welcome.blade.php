@@ -9,8 +9,11 @@
             <div class="p-6 text-gray-900 dark:text-gray-100">
                 <div class="overflow-x-auto">
                     <h2>
-                        {{ __('interface.welcome') }}
+                        {{ __('interface.welcome.title') }}
                     </h2>
+                    <p>
+                        {{ __('interface.welcome.text') }}
+                    </p>
                 </div>
             </div>
         </div>
