@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('label_task', function (Blueprint $table) {
             $table->id();
             $table->foreignId('task_id')->constrained();
-            $table->foreignId('label_id')->constrained()->restrictOnDelete();
+            $table->foreignId('label_id')->constrained();
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('task_label');
+        Schema::dropIfExists('label_task');
     }
 };
