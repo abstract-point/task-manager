@@ -23,6 +23,7 @@ class StoreLabelRequest extends FormRequest
     {
         return [
             'name.unique' => 'Метка с таким именем уже существует',
+            'name.required' => 'Это обязательное поле',
         ];
     }
 }

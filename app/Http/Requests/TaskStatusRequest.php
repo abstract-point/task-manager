@@ -27,6 +27,7 @@ class TaskStatusRequest extends FormRequest
     {
         return [
             'name.unique' => 'Статус с таким именем уже существует',
+            'name.required' => 'Это обязательное поле',
         ];
     }
 }

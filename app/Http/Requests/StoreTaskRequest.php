@@ -28,6 +28,8 @@ class StoreTaskRequest extends FormRequest
     {
         return [
             'name.unique' => 'Задача с таким именем уже существует',
+            'name.required' => 'Это обязательное поле',
+            'created_by_id' => 'Это обязательное поле',
         ];
     }
 }
