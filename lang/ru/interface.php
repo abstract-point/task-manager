@@ -21,7 +21,7 @@ return [
         'password' => 'Пароль',
         'remember_me' => 'Запомнить меня',
         'forgot_password' => 'Забыли пароль?',
-        'button' => 'Вход',
+        'button' => 'Войти',
     ],
     'register' => [
         'title' => 'Регистрация в Todos',
