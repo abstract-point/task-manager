@@ -60,10 +60,14 @@
                                                   class="inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="text-red-500 dark:text-red-400"
-                                                        onclick="return confirm({{ __('interface.tasks.index.table.actions.alert') }})">
+
+                                                <a href="#"
+                                                   class="text-red-400 dark:text-red-400"
+                                                   onclick="event.preventDefault();
+                                                                if (confirm('{{ __('interface.tasks.index.table.actions.alert') }}')) this.closest('form').submit();">
                                                     {{ __('interface.tasks.index.table.actions.delete') }}
-                                                </button>
+                                                </a>
+
                                             </form>
                                         @endif
                                     </td>

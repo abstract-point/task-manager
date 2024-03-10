@@ -44,10 +44,12 @@
                                         <form action="{{ route('task_statuses.destroy', $status) }}" method="POST" class="inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="text-red-500 dark:text-red-400"
-                                                    onclick="return confirm({{ __('interface.task_statuses.index.table.actions.alert') }})">
+                                            <a href="#"
+                                               class="text-red-400 dark:text-red-400"
+                                               onclick="event.preventDefault();
+                                                                    if (confirm('{{ __('interface.task_statuses.index.table.actions.alert') }}')) this.closest('form').submit();">
                                                 {{ __('interface.task_statuses.index.table.actions.delete') }}
-                                            </button>
+                                            </a>
                                         </form>
                                     </td>
                                 @endauth
