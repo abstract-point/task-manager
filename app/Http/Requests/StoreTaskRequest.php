@@ -23,4 +23,11 @@ class StoreTaskRequest extends FormRequest
             'labels' => 'array',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.unique' => 'Задача с таким именем уже существует',
+        ];
+    }
 }

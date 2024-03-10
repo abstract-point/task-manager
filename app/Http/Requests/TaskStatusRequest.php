@@ -22,4 +22,11 @@ class TaskStatusRequest extends FormRequest
             ],
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.unique' => 'Статус с таким именем уже существует',
+        ];
+    }
 }
