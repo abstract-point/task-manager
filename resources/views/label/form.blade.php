@@ -1,6 +1,6 @@
 <div>
     <x-input-label for="name" :value="__('interface.labels.form.name')" />
-    <x-text-input id="name" class="block mt-1 w-1/3" type="text" name="name" :value="old('name', $label->name ?? null)" required autofocus />
+    <x-text-input id="name" class="block mt-1 w-1/3" type="text" name="name" :value="old('name', $label->name ?? null)" autofocus />
     <x-input-error :messages="$errors->get('name')" class="mt-2" />
 </div>
 <div>

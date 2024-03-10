@@ -6,7 +6,7 @@
 <div>
     <x-input-label for="name" :value="__('interface.tasks.form.name')"/>
     <x-text-input id="name" class="block mt-1 w-1/3" type="text" name="name" :value="old('name', $task->name ?? null)"
-                  required autofocus/>
+                  autofocus/>
     <x-input-error :messages="$errors->get('name')" class="mt-2"/>
 </div>
 <div>
@@ -18,7 +18,7 @@
 </div>
 <div>
     <x-input-label for="status_id" :value="__('interface.tasks.form.status')" class="mt-4"/>
-    <x-selector-input id="status_id" class="block mt-1 w-1/3" name="status_id" required>
+    <x-selector-input id="status_id" class="block mt-1 w-1/3" name="status_id">
         @foreach($taskStatuses as $status)
             <option
                 value="{{ $status->id }}" {{ old('status_id', $task->status_id ?? null) === $status->id ? 'selected' : '' }}>
