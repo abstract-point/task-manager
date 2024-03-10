@@ -1,9 +1,4 @@
 <div>
-    <x-text-input id="created_by_id" class="block mt-1 w-1/3 hidden" type="text" name="created_by_id"
-                  value="{{ Auth::user()->id }}"/>
-    <x-input-error :messages="$errors->get('created_by_id')" class="mt-2"/>
-</div>
-<div>
     <x-input-label for="name" :value="__('interface.tasks.form.name')"/>
     <x-text-input id="name" class="block mt-1 w-1/3" type="text" name="name" :value="old('name', $task->name ?? null)"
                   autofocus/>

@@ -61,7 +61,9 @@ class TaskController extends Controller
             unset($labelsData[0]);
         }
 
-        $task = Task::factory()->create($taskData);
+        $task = Task::factory()->make($taskData);
+        $task->creator()->associate(Auth::user());
+        $task->save();
         $task->labels()->attach($labelsData);
 
         flash(__('messages.task.store'))->success();

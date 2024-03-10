@@ -18,7 +18,6 @@ class StoreTaskRequest extends FormRequest
             'name' => ['required', 'string', 'unique:tasks', 'max:100', 'min:3'],
             'description' => ['nullable', 'string', 'max:255'],
             'status_id' => ['required', 'integer'],
-            'created_by_id' => ['required', 'integer'],
             'assigned_to_id' => 'nullable|integer',
             'labels' => 'array',
         ];
@@ -29,7 +28,6 @@ class StoreTaskRequest extends FormRequest
         return [
             'name.unique' => 'Задача с таким именем уже существует',
             'name.required' => 'Это обязательное поле',
-            'created_by_id' => 'Это обязательное поле',
         ];
     }
 }
