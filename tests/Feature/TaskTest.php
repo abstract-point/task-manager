@@ -58,7 +58,7 @@ class TaskTest extends TestCase
     public function testStoreAuthed(): void
     {
         $user = User::factory()->create();
-        $task = Task::factory()->make()->only('name', 'description', 'status_id', 'created_by_id', 'assigned_to_id');
+        $task = Task::factory()->make()->only('name', 'description', 'status_id', 'assigned_to_id');
 
         $this->actingAs($user)
             ->post(route('tasks.store'), $task)
