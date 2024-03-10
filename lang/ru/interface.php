@@ -13,7 +13,7 @@ return [
         'login' => 'Войти',
         'register' => 'Регистрация',
         'profile' => 'Профиль',
-        'logout' => 'Выйти',
+        'logout' => 'Выход',
     ],
     'login' => [
         'title' => 'Вход в Todos',
@@ -21,7 +21,7 @@ return [
         'password' => 'Пароль',
         'remember_me' => 'Запомнить меня',
         'forgot_password' => 'Забыли пароль?',
-        'button' => 'Войти',
+        'button' => 'Вход',
     ],
     'register' => [
         'title' => 'Регистрация в Todos',
