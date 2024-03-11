@@ -80,7 +80,7 @@ class TaskTest extends TestCase
     {
         $user = User::factory()->create();
         $task = Task::factory()->create();
-        $updatedTask = Task::factory()->make()->only('name', 'description', 'status_id', 'created_by_id');
+        $updatedTask = Task::factory()->make()->only('name', 'description', 'status_id');
 
         $this->actingAs($user)
             ->patch(route('tasks.update', [$task]), $updatedTask)
