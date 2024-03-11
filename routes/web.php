@@ -48,4 +48,3 @@ Route::resource('tasks', TaskController::class)
     ->only(['index', 'show']);
 Route::resource('labels', LabelController::class)
     ->only(['index']);
-
