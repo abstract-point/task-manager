@@ -30,6 +30,7 @@ class UpdateTaskRequest extends FormRequest
         return [
             'name.unique' => 'Задача с таким именем уже существует',
             'name.required' => 'Это обязательное поле',
+            'status_id.required' => 'Это обязательное поле',
         ];
     }
 }

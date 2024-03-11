@@ -14,6 +14,7 @@
 <div>
     <x-input-label for="status_id" :value="__('interface.tasks.form.status')" class="mt-4"/>
     <x-selector-input id="status_id" class="block mt-1 w-1/3" name="status_id">
+        <option value="">-------</option>
         @foreach($taskStatuses as $status)
             <option
                 value="{{ $status->id }}" {{ old('status_id', $task->status_id ?? null) === $status->id ? 'selected' : '' }}>
@@ -26,7 +27,7 @@
 <div>
     <x-input-label for="assigned_to_id" :value="__('interface.tasks.form.performer')" class="mt-4"/>
     <x-selector-input id="assigned_to_id" class="block mt-1 w-1/3" name="assigned_to_id">
-        <option value=""></option>
+        <option value="">-------</option>
         @foreach($users as $user)
             <option
                 value="{{ $user->id }}" {{ old('assigned_to_id', $task->assigned_to_id ?? null) === $user->id ? 'selected' : '' }}>
