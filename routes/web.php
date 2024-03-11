@@ -49,5 +49,3 @@ Route::resource('tasks', TaskController::class)
 Route::resource('labels', LabelController::class)
     ->only(['index']);
 
-Route::get('/send', [SendController::class, 'send']);
-Route::get('/test', [TestController::class, 'test']);

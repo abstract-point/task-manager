@@ -57,7 +57,7 @@ class TaskController extends Controller
         $taskData = collect($data)->except(['labels'])->toArray();
         $labelsData = $data['labels'] ?? [];
 
-        if (in_array(null, $labelsData)) {
+        if (in_array(null, $labelsData, true)) {
             unset($labelsData[0]);
         }
 
@@ -100,7 +100,7 @@ class TaskController extends Controller
         $taskData = collect($data)->except(['labels'])->toArray();
         $labelsData = $data['labels'] ?? [];
 
-        if (in_array(null, $labelsData)) {
+        if (in_array(null, $labelsData, true)) {
             unset($labelsData[0]);
         }
 
@@ -118,6 +118,10 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
+        if (!Auth::user()) {
+            return redirect()->route('login');
+        }
+
         if (Auth::user()->id !== $task->creator->id) {
             flash(__('messages.task.delete_forbidden'))->error();
 
