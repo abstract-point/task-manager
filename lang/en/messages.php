@@ -20,4 +20,3 @@ return [
         'delete_forbidden' => 'Failed to delete label',
     ]
 ];
-

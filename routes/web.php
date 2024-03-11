@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('task_statuses', TaskStatusController::class)
@@ -51,4 +51,3 @@ Route::resource('labels', LabelController::class)
 
 Route::get('/send', [SendController::class, 'send']);
 Route::get('/test', [TestController::class, 'test']);
-
