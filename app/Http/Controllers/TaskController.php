@@ -118,7 +118,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        if (!Auth::user()) {
+        if (Auth::user() === null || $task->creator === null) {
             return redirect()->route('login');
         }
 

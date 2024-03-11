@@ -26,7 +26,7 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        if (!$request->user()) {
+        if ($request->user() === null) {
             return Redirect::route('login');
         }
 
