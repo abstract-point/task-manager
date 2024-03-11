@@ -34,7 +34,7 @@
                             <tr>
                                 <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-300">{{ $status->id }}</td>
                                 <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-300">{{ $status->name }}</td>
-                                <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-300">{{ $status->created_at }}</td>
+                                <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-300">{{ $status->created_at->format('d-m-Y') }}</td>
                                 @auth
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-300">
                                         <a href="{{ route('task_statuses.edit', $status) }}" class="text-blue-400 dark:text-blue-400">
