@@ -47,7 +47,7 @@
                                 </td>
                                 <td class="whitespace-normal break-words px-4 py-2 text-gray-700 dark:text-gray-300">{{ $task->creator->name }}</td>
                                 <td class="whitespace-normal break-words px-4 py-2 text-gray-700 dark:text-gray-300">{{ $task->assignee->name ?? ''}}</td>
-                                <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-300">{{ $task->created_at->format('d-m-Y') }}</td>
+                                <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-300">{{ $task->created_at->format('d.m.Y') }}</td>
                                 @auth
                                     <td class="whitespace-normal break-words px-4 py-2 text-gray-700 dark:text-gray-300">
                                         <a href="{{ route('tasks.edit', $task) }}"
