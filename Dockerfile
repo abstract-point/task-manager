@@ -1,26 +1,32 @@
-FROM serversideup/php:beta-fpm-nginx
+FROM php:8.2-fpm
 
-# Copy the application code to the container
-COPY --chown=www-data:www-data . /var/www/html
+RUN apt-get update && apt-get install -y libzip-dev libpq-dev
+RUN docker-php-ext-install zip pdo pdo_pgsql
 
-# Copy the nginx configuration to the container
-COPY ./docker/nginx-site.conf /etc/nginx/sites-available/default
-
-# Install make
-RUN apt-get update && \
-    apt-get install -y make
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && php -r "unlink('composer-setup.php');"
 
 RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
 RUN apt-get install -y nodejs
 
-# Install app
-RUN make setup
-RUN rm -f ./public/hot
+WORKDIR /app
 
-# Run any necessary Laravel initialization scripts
-RUN php artisan config:cache && \
-    php artisan route:cache && \
-    php artisan view:cache
+COPY . .
 
-# Expose port 80 to the host
-EXPOSE 80
+RUN composer install && \
+    npm ci && \
+    npm run build
+
+RUN cp -n .env.example .env && \
+    php artisan key:generate --ansi
+
+RUN php artisan config:clear && \
+    php artisan cache:clear
+
+RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache && \
+    chmod -R 775 /app/storage /app/bootstrap/cache
+
+EXPOSE 9000
+
+CMD ["php-fpm"]
