@@ -18,33 +18,35 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::prefix('task-manager')->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('index');
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('index');
+    Route::middleware('auth')->group(function () {
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+    require __DIR__ . '/auth.php';
 
-require __DIR__ . '/auth.php';
+    Route::middleware(['auth'])->group(function () {
+        Route::resource('task_statuses', TaskStatusController::class)
+            ->parameters(['task_statuses' => 'status'])
+            ->except(['index']);
+        Route::resource('tasks', TaskController::class)
+            ->except(['index', 'show']);
+        Route::resource('labels', LabelController::class)
+            ->except(['index', 'show']);
+    });
 
-Route::middleware(['auth'])->group(function () {
+    // Маршруты, доступные без аутентификации
     Route::resource('task_statuses', TaskStatusController::class)
-        ->parameters(['task_statuses' => 'status'])
-        ->except(['index']);
+        ->only(['index']);
     Route::resource('tasks', TaskController::class)
-        ->except(['index', 'show']);
+        ->only(['index', 'show']);
     Route::resource('labels', LabelController::class)
-        ->except(['index', 'show']);
-});
+        ->only(['index']);
 
-// Маршруты, доступные без аутентификации
-Route::resource('task_statuses', TaskStatusController::class)
-    ->only(['index']);
-Route::resource('tasks', TaskController::class)
-    ->only(['index', 'show']);
-Route::resource('labels', LabelController::class)
-    ->only(['index']);
+});
