@@ -20,17 +20,6 @@
                 <x-nav-link :href="route('labels.index')" :active="request()->routeIs('labels.*')">
                     {{ __('interface.navigation.labels') }}
                 </x-nav-link>
-                @auth
-                <form method="POST" action="{{ route('logout') }}" class="inline-flex items-center">
-                    @csrf
-
-                    <x-nav-link :href="route('logout')"
-                                     onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                        {{ __('interface.navigation.logout') }}
-                    </x-nav-link>
-                </form>
-                @endauth
             </div>
 
             <!-- Settings Dropdown -->
@@ -57,17 +46,15 @@
                             <x-dropdown-link :href="route('profile.edit')">
                                 {{ __('interface.navigation.profile') }}
                             </x-dropdown-link>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
 
-                            <!-- Authentication -->
-{{--                            <form method="POST" action="{{ route('logout') }}">--}}
-{{--                                @csrf--}}
-
-{{--                                <x-dropdown-link :href="route('logout')"--}}
-{{--                                                 onclick="event.preventDefault();--}}
-{{--                                                this.closest('form').submit();">--}}
-{{--                                    {{ __('interface.navigation.logout') }}--}}
-{{--                                </x-dropdown-link>--}}
-{{--                            </form>--}}
+                                <x-dropdown-link :href="route('logout')"
+                                            onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                    {{ __('interface.navigation.logout') }}
+                                </x-dropdown-link>
+                            </form>
                         </x-slot>
                     </x-dropdown>
                 </div>
