@@ -126,6 +126,9 @@ return [
             'labels' => 'Метки',
         ],
         'filter' => [
+            'author' => 'Автор',
+            'status' => 'Статус',
+            'performer' => 'Исполнитель',
             'button' => 'Применить',
         ],
     ],

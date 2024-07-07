@@ -114,6 +114,9 @@ return [
             'labels' => 'Labels',
         ],
         'filter' => [
+            'author' => 'Author',
+            'status' => 'Status',
+            'performer' => 'Performer',
             'button' => 'Apply',
         ],
     ],
