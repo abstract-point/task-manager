@@ -3,7 +3,7 @@
 return [
     'title' => 'Todos',
     'welcome' => [
-        'title' => 'Привет от Хекслета!',
+        'title' => 'Привет!',
         'text' => 'Это простой менеджер задач на Laravel'
     ],
     'navigation' => [
