@@ -1,11 +1,11 @@
 <form action="{{route('tasks.index')}}">
 
     <!-- Inputs -->
-    <div class="flex flex-row">
+    <div class="flex">
         <div class="mr-4">
             <x-selector-input id="status_id" class="" name="filter[status_id]">
                 <option value="">
-                    {{ 'Статус' }}
+                    {{ __('interface.tasks.filter.status') }}
                 </option>
                 @foreach($taskStatuses as $status)
                     <option
@@ -19,7 +19,7 @@
         <div class="mr-4">
             <x-selector-input id="created_by_id" class="" name="filter[created_by_id]">
                 <option value="">
-                    {{ 'Автор' }}
+                    {{ __('interface.tasks.filter.author') }}
                 </option>
                 @foreach($users as $user)
                     <option
@@ -33,7 +33,7 @@
         <div class="mr-4">
             <x-selector-input id="assigned_to_id" class="" name="filter[assigned_to_id]">
                 <option value="">
-                    {{ 'Исполнитель' }}
+                    {{ __('interface.tasks.filter.performer') }}
                 </option>
                 @foreach($performers as $performer)
                     <option

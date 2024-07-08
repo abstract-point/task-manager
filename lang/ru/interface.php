@@ -3,7 +3,7 @@
 return [
     'title' => 'Todos',
     'welcome' => [
-        'title' => 'Привет от Хекслета!',
+        'title' => 'Привет!',
         'text' => 'Это простой менеджер задач на Laravel'
     ],
     'navigation' => [
@@ -126,6 +126,9 @@ return [
             'labels' => 'Метки',
         ],
         'filter' => [
+            'author' => 'Автор',
+            'status' => 'Статус',
+            'performer' => 'Исполнитель',
             'button' => 'Применить',
         ],
     ],
