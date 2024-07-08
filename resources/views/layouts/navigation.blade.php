@@ -102,12 +102,14 @@
                 {{ __('interface.navigation.labels') }}
             </x-responsive-nav-link>
             @guest
-                <x-responsive-nav-link :href="route('login')">
-                    {{ __('interface.navigation.login') }}
-                </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('register')">
-                    {{ __('interface.navigation.register') }}
-                </x-responsive-nav-link>
+                <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
+                    <x-responsive-nav-link :href="route('login')">
+                        {{ __('interface.navigation.login') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('register')">
+                        {{ __('interface.navigation.register') }}
+                    </x-responsive-nav-link>
+                </div>
             @endguest
         </div>
 

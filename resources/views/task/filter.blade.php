@@ -1,7 +1,7 @@
 <form action="{{route('tasks.index')}}">
 
     <!-- Inputs -->
-    <div class="flex">
+    <div class="flex flex-wrap gap-y-4">
         <div class="mr-4">
             <x-selector-input id="status_id" class="" name="filter[status_id]">
                 <option value="">
@@ -46,7 +46,7 @@
         </div>
 
         <!-- Button -->
-        <div class="flex">
+        <div class="">
             <x-primary-button class="">
                 {{ __('interface.tasks.filter.button') }}
             </x-primary-button>
