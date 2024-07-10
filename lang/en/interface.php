@@ -4,7 +4,10 @@ return [
     'title' => 'Todos',
     'welcome' => [
         'title' => 'Welcome!',
-        'text' => 'This is simple task manager by Laravel'
+    'text' => <<<TEXT
+                This is simple task manager by Laravel.
+                Register to create new tasks, statuses and tags.
+                TEXT
     ],
     'navigation' => [
         'statuses' => 'Statuses',

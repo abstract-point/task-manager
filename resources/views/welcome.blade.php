@@ -12,7 +12,7 @@
                         {{ __('interface.welcome.title') }}
                     </h2>
                     <p>
-                        {{ __('interface.welcome.text') }}
+                        {!! nl2br(__('interface.welcome.text')) !!}
                     </p>
                 </div>
             </div>
