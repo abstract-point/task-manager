@@ -6,7 +6,7 @@
         @csrf
 
             <div class="mx-auto max-w-lg text-center my-4">
-                <a href="/">
+                <a href="{{ route('index') }}">
                     <h1 class="text-2xl font-bold sm:text-3xl text-indigo-700">{{ __('Менеджер задач') }}</h1>
                 </a>
             </div>
