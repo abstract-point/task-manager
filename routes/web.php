@@ -2,10 +2,8 @@
 
 use App\Http\Controllers\LabelController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SendController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TaskStatusController;
-use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,7 +39,6 @@ Route::prefix('task-manager')->group(function () {
             ->except(['index', 'show']);
     });
 
-    // Маршруты, доступные без аутентификации
     Route::resource('task_statuses', TaskStatusController::class)
         ->only(['index']);
     Route::resource('tasks', TaskController::class)
