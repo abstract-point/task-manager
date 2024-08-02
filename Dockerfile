@@ -18,7 +18,7 @@ RUN composer install
 RUN npm ci
 RUN npm run build
 
-RUN cp -n .env.example .env && \
+RUN cp -n .env.production .env && \
     php artisan key:generate --ansi
 
 RUN php artisan config:clear && \
