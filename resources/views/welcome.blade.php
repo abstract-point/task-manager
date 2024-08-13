@@ -8,12 +8,19 @@
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900 dark:text-gray-100">
                 <div class="overflow-x-auto">
-                    <h2>
-                        {{ __('interface.welcome.title') }}
-                    </h2>
-                    <p>
-                        {!! nl2br(__('interface.welcome.text')) !!}
-                    </p>
+                    @guest
+                        <h2>
+                            {{ __('interface.welcome.title') }}
+                        </h2>
+                        <p>
+                            {!! nl2br(__('interface.welcome.text_guest')) !!}
+                        </p>
+                    @endguest
+                    @auth
+                        <p>
+                            {!! nl2br(__('interface.welcome.text_authed')) !!}
+                        </p>
+                    @endauth
                 </div>
             </div>
         </div>
