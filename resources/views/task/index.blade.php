@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="flex flex-wrap justify-between gap-y-4 gap-x-4 my-4">
+        <div class="flex flex-wrap justify-between gap-y-4 gap-x-4 my-4 px-2 sm:px-0">
             <div class="flex">
                 @include('task.filter')
             </div>
