@@ -4,10 +4,14 @@ return [
     'title' => 'Todos',
     'welcome' => [
         'title' => 'Welcome!',
-    'text' => <<<TEXT
+        'text_guest' => <<<TEXT
                 This is simple task manager by Laravel.
                 Register to create new tasks, statuses and tags.
-                TEXT
+                TEXT,
+        'text_authed' => <<<TEXT
+                "Hooray! You are now authorized in the application.
+                You can now create new tasks, statuses, and tags, as well as edit and delete them.
+                TEXT,
     ],
     'navigation' => [
         'statuses' => 'Statuses',
