@@ -10,7 +10,11 @@ return [
                 TEXT,
         'text_authed' => <<<TEXT
                 "Hooray! You are now authorized in the application.
+
                 You can now create new tasks, statuses, and tags, as well as edit and delete them.
+
+                Statuses and tags cannot be deleted while they are linked to at least one task.
+                You can only delete tasks that you have created
                 TEXT,
     ],
     'navigation' => [
