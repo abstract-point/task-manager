@@ -29,4 +29,4 @@ The production version of the application is deployed and can be accessed at the
 ```text
 https://task-manager.ivandev.pro
 ```
-[CLICK](https://ivandev.pro/task-manager)
+[CLICK](https://task-manager.ivandev.pro)
